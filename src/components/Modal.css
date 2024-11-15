@@ -1,0 +1,39 @@
+.dialog {
+  width: 400px;
+  overflow-y: scroll;
+}
+
+.dialog form button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.c {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.c li {
+  margin: 0;
+  flex-grow: 1;
+  list-style: none;
+}
+
+button {
+  padding: 5px 10px;
+  cursor: pointer;
+}

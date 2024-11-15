@@ -1,0 +1,11 @@
+.Navbar {
+  display: flex;
+  background-color: blue;
+  justify-content: space-between;
+}
+
+.nav-elements {
+}
+.dialog {
+  width: 300px;
+}
