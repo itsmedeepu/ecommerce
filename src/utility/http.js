@@ -1,13 +1,14 @@
 async function fetchData() {
   try {
     const response = await fetch("https://fakestoreapi.com/products");
+
     if (!response.ok) {
-      throw new Error("No internet connection");
+      throw new Error("Something went bad.../ check the api url");
     }
     const repData = await response.json();
     return repData;
   } catch (error) {
-    console.log("something went bad at server" + { message: error });
+    throw new Error(error);
   }
 }
 export default fetchData;

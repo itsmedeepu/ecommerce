@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import "../components/Modal.css";
 import CartContext from "../store/CartContext";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 
 function Modal({ modalref }) {
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
@@ -20,7 +22,28 @@ function Modal({ modalref }) {
       {cart.length > 0 ? (
         <>
           {" "}
-          <div className="cart-items">
+          <table>
+            {cart.map((item, index) => {
+              return (
+                <>
+                  <tr>
+                    <td>{item.title}</td>
+                    <td>
+                      <RemoveCircleIcon
+                        onClick={() => removeFromCart(item.id)}
+                      ></RemoveCircleIcon>
+                      <h2 className="card-2">{item.quantity}</h2>
+                      <AddCircleOutlineIcon
+                        onClick={() => addToCart(item.id)}
+                      ></AddCircleOutlineIcon>
+                    </td>
+                  </tr>
+                </>
+              );
+            })}
+            <tr></tr>
+          </table>
+          {/* <div className="cart-items">
             <ol>
               {cart.map((item, index) => {
                 return (
@@ -28,18 +51,20 @@ function Modal({ modalref }) {
                     <div className="c" key={item.id}>
                       <li>{item.title}</li>
                       <div className="actions">
-                        <button onClick={() => removeFromCart(item.id)}>
-                          -
-                        </button>
-                        <h1>{item.quantity}</h1>
-                        <button onClick={() => addToCart(item.id)}>+</button>
+                        <RemoveCircleIcon
+                          onClick={() => removeFromCart(item.id)}
+                        ></RemoveCircleIcon>
+                        <h2 className="card-2">{item.quantity}</h2>
+                        <AddCircleOutlineIcon
+                          onClick={() => addToCart(item.id)}
+                        ></AddCircleOutlineIcon>
                       </div>
                     </div>
                   </>
                 );
               })}
             </ol>
-          </div>
+          </div> */}
           <hr />
           <span>Total Cost =</span> <span>{calculateTotalCost()} $</span>{" "}
         </>

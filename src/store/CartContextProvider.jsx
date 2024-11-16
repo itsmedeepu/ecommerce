@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { act, useEffect, useReducer } from "react";
 import CartContext from "./CartContext";
 import fetchData from "../utility/http";
 
@@ -7,6 +7,7 @@ const initialState = {
   cart: [],
   loading: true, // Initial loading state set to true
   error: false,
+  errorname: "",
 };
 
 function reducerFunction(state, action) {
@@ -22,6 +23,7 @@ function reducerFunction(state, action) {
     case "ERROR": {
       return {
         ...state,
+        errorname: action.payload.errorname,
         loading: false,
         error: true,
       };
@@ -92,9 +94,12 @@ function CartContextProvider({ children }) {
             products,
           },
         });
-      } catch (error) {
+      } catch (err) {
         dispatch({
           type: "ERROR",
+          payload: {
+            errorname: err.message,
+          },
         });
       }
     }
@@ -131,6 +136,7 @@ function CartContextProvider({ children }) {
     cart: state.cart,
     loading: state.loading,
     error: state.error,
+    errorname: state.errorname,
     addToCart,
     removeFromCart,
   };
