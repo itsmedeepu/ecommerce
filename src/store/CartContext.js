@@ -5,6 +5,7 @@ const CartContext = createContext({
   cart: [],
   loading: true,
   error: false,
+  errorname: "",
   addtocart: () => {},
   removeFromCart: () => {},
 });
